@@ -27,10 +27,9 @@
 
               <div v-if="advanced === '2'">
                 <el-form-item label="后端地址:">
-                  <el-autocomplete style="width: 100%" v-model="form.customBackend" :fetch-suggestions="backendSearch"
-                    placeholder="动动小手，（建议）自行搭建后端服务。例：http://127.0.0.1:25500/sub?">
-                    <el-button slot="append" @click="gotoGayhub" icon="el-icon-link">前往项目仓库</el-button>
-                  </el-autocomplete>
+                  <el-select v-model="form.customBackend" allow-create filterable @change="selectChanged" placeholder="请选择" style="width: 100%">
+                    <el-option v-for="(v, k) in options.customBackend" :key="k" :label="k" :value="v"></el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item label="远程配置:">
                   <el-select v-model="form.remoteConfig" allow-create filterable placeholder="请选择" style="width: 100%">
@@ -232,75 +231,62 @@ export default {
           Trojan: "trojan",
           Surge3: "surge&ver=3",
         },
-        backendOptions: [{ value: "http://127.0.0.1:25500/sub?" }],
+        customBackend: {
+          "custom" : "https://conv.us.kg/sub?",
+          "id9": "https://v.id9.cc/sub?",
+          "dler-io": "https://api.dler.io/sub?",
+          "huacloud" : "https://api.huacloud.xyz/sub?",
+          "sublink" : "https://api.sublink.dev/sub?",
+          "sub-web": "https://api.wcc.best/sub?",
+          "local": "http://127.0.0.1:25500/sub?",
+        },
+        backendOptions: [
+          {value: "https://conv.us.kg/sub?"},
+          {value: "https://v.id9.cc/sub?"},
+          {value: "https://api.dler.io/sub?"},
+          {value: "https://api.huacloud.xyz/sub?"},
+          {value: "https://api.sublink.dev/sub?"},
+          {value: "https://api.wcc.best/sub?"},
+          {value: "http://127.0.0.1:25500/sub?"},
+        ],
         remoteConfig: [
           {
-            label: "universal",
+            label: "Custom",
             options: [
               {
-                label: "No-Urltest",
+                label: "Full_Rev",
                 value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/universal/no-urltest.ini"
+                  "https://raw.githubusercontent.com/siannsin/ACL4SSR/refs/heads/master/Clash/config/ACL4SSR_Online_Full_Rev.ini"
               },
               {
-                label: "Urltest",
+                label: "Full_Edge",
                 value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/universal/urltest.ini"
+                  "https://raw.githubusercontent.com/siannsin/ACL4SSR/refs/heads/master/Clash/config/ACL4SSR_Online_Full_Edge.ini"
+              },
+              {
+                label: "Full_Extra",
+                value:
+                  "https://raw.githubusercontent.com/siannsin/ACL4SSR/refs/heads/master/Clash/config/ACL4SSR_Online_Full_Extra.ini"
               }
             ]
           },
           {
-            label: "customized",
+            label: "ACL4SSR",
             options: [
               {
-                label: "Maying",
+                label: "ACL4SSR_Online",
                 value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/maying.ini"
+                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
               },
               {
-                label: "Ytoo",
+                label: "ACL4SSR_Online_Mini",
                 value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ytoo.ini"
+                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini.ini"
               },
               {
-                label: "FlowerCloud",
+                label: "ACL4SSR_Online_Full",
                 value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/flowercloud.ini"
-              },
-              {
-                label: "Nexitally",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/nexitally.ini"
-              },
-              {
-                label: "SoCloud",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/socloud.ini"
-              },
-              {
-                label: "ARK",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ark.ini"
-              },
-              {
-                label: "ssrCloud",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ssrcloud.ini"
-              }
-            ]
-          },
-          {
-            label: "Special",
-            options: [
-              {
-                label: "NeteaseUnblock(仅规则，No-Urltest)",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/special/netease.ini"
-              },
-              {
-                label: "Basic(仅GEOIP CN + Final)",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/special/basic.ini"
+                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full.ini"
               }
             ]
           }
