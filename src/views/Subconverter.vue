@@ -232,7 +232,8 @@ export default {
           Surge3: "surge&ver=3",
         },
         customBackend: {
-          "custom" : "https://conv.us.kg/sub?",
+          "custom" : "https://mbk.conv.us.kg/sub?",
+          "relay" : "https://obk.conv.us.kg/sub?",
           "id9": "https://v.id9.cc/sub?",
           "dler-io": "https://api.dler.io/sub?",
           "huacloud" : "https://api.huacloud.xyz/sub?",
@@ -241,7 +242,8 @@ export default {
           "local": "http://127.0.0.1:25500/sub?",
         },
         backendOptions: [
-          {value: "https://conv.us.kg/sub?"},
+          {value: "https://mbk.conv.us.kg/sub?"},
+          {value: "https://obk.conv.us.kg/sub?"},
           {value: "https://v.id9.cc/sub?"},
           {value: "https://api.dler.io/sub?"},
           {value: "https://api.huacloud.xyz/sub?"},
