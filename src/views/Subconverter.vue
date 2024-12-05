@@ -512,11 +512,11 @@ export default {
       this.$axios
         .post(shortUrlBackend, data, {
           header: {
-            "Content-Type": "application/json; charset=utf-8"
+            "Content-Type": "application/json"
           }
         })
         .then(res => {
-          if (res.data.Code === 200 && res.data.link !== "") {
+          if (res.status === 200 && res.data.link !== "") {
             this.curtomShortSubUrl = res.data.link;
             this.$copyText(res.data.link);
             this.$message.success("短链接已复制到剪贴板");
