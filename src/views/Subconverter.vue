@@ -202,6 +202,9 @@ const defaultBackend = process.env.VUE_APP_SUBCONVERTER_DEFAULT_BACKEND + '/sub?
 const shortUrlBackend = process.env.VUE_APP_MYURLS_API
 const configUploadBackend = process.env.VUE_APP_CONFIG_UPLOAD_API
 const tgBotLink = process.env.VUE_APP_BOT_LINK
+const shortSite = process.env.SHORT_SITE
+const customBack = process.env.CUSTOM_BACK
+const relayBack = process.env.RELAY_BACK
 
 export default {
   data() {
@@ -232,8 +235,8 @@ export default {
           Surge3: "surge&ver=3",
         },
         customBackend: {
-          "custom" : "https://mbk.conv.us.kg/sub?",
-          "relay" : "https://obk.conv.us.kg/sub?",
+          "custom" : customBack,
+          "relay" : relayBack,
           "id9": "https://v.id9.cc/sub?",
           "dler-io": "https://api.dler.io/sub?",
           "huacloud" : "https://api.huacloud.xyz/sub?",
@@ -242,8 +245,8 @@ export default {
           "local": "http://127.0.0.1:25500/sub?",
         },
         backendOptions: [
-          {value: "https://mbk.conv.us.kg/sub?"},
-          {value: "https://obk.conv.us.kg/sub?"},
+          {value: customBack},
+          {value: relayBack},
           {value: "https://v.id9.cc/sub?"},
           {value: "https://api.dler.io/sub?"},
           {value: "https://api.huacloud.xyz/sub?"},
@@ -498,7 +501,7 @@ export default {
       let data = {"url" : this.customSubUrl};
 
       this.$axios
-        .post(shortUrlBackend, data, {
+        .post(shortSite, data, {
           header: {
             "Content-Type": "application/json"
           }
