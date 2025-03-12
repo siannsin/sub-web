@@ -202,9 +202,9 @@ const defaultBackend = process.env.VUE_APP_SUBCONVERTER_DEFAULT_BACKEND + '/sub?
 // const shortUrlBackend = process.env.VUE_APP_MYURLS_API
 const configUploadBackend = process.env.VUE_APP_CONFIG_UPLOAD_API
 const tgBotLink = process.env.VUE_APP_BOT_LINK
-const shortSite = process.env.SHORT_SITE
-const customBack = process.env.CUSTOM_BACK
-const relayBack = process.env.RELAY_BACK
+const shortSite = process.env.VUE_APP_SHORT_SITE
+const customBack = process.env.VUE_APP_CUSTOM_BACK
+const relayBack = process.env.VUE_APP_RELAY_BACK
 
 export default {
   data() {
